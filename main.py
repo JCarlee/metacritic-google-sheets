@@ -1,13 +1,22 @@
 import gspread
 from bs4 import BeautifulSoup
 from oauth2client.service_account import ServiceAccountCredentials
+from urllib.request import Request, urlopen
 
-scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-credentials = ServiceAccountCredentials.from_json_keyfile_name('meta-credecntials.json', scope)
 
-gc = gspread.authorize(credentials)
-lib_sheet = gc.open('Game Library').worksheet("Full Library")
-info_sheet = gc.open('Game Library').worksheet("Python")
+#scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+#credentials = ServiceAccountCredentials.from_json_keyfile_name('meta-credecntials.json', scope)
+
+# gc = gspread.authorize(credentials)
+# lib_sheet = gc.open('Game Library').worksheet("Full Library")
+# info_sheet = gc.open('Game Library').worksheet("Python")
 
 # Take URL with bs and check MC values
 
+req = Request('https://www.metacritic.com/game/xbox-one/red-dead-redemption-2', headers={'User-Agent': 'Mozilla/5.0'})
+webpage = urlopen(req).read()
+
+soup = BeautifulSoup(webpage, features="html.parser")
+name_box = soup.find('span', attrs={'itemprop': 'ratingValue'})
+box = name_box.text.strip()
+print(box)
