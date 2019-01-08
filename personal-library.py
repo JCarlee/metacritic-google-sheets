@@ -7,35 +7,36 @@ scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/au
 credentials = ServiceAccountCredentials.from_json_keyfile_name('meta-credentials.json', scope)
 gc = gspread.authorize(credentials)
 lib_sheet = gc.open('Game Library').worksheet("Library")
+gp_sheet = gc.open('Game Library').worksheet("GamePass")
 info_sheet = gc.open('Game Library').worksheet("Python")
 
-row_start = info_sheet.acell('A2').value
-row_end = info_sheet.acell('B2').value
+lib_row_end = info_sheet.acell('B2').value
+gp_row_end = info_sheet.acell('D2').value
 base_url = 'https://www.metacritic.com/game/'
 
 
-# Create List of games
-games = []
-game_cells = lib_sheet.range('A' + row_start + ':A' + row_end)
-for cell_val in game_cells:
-    games.append(cell_val.value.replace(' ', '-').lower())
+# Create list of lib_game_list
+lib_game_list = []
+lib_game_cells = lib_sheet.range('A2:A' + lib_row_end)
+for cell_val in lib_game_cells:
+    lib_game_list.append(cell_val.value.replace(' ', '-').lower())
 
 # Create list of platforms
-plat_list = []
-plat_cells = lib_sheet.range('B' + row_start + ':B' + row_end)
+lib_plat_list = []
+plat_cells = lib_sheet.range('B:B' + lib_row_end)
 for cell_val in plat_cells:
-    plat_list.append(cell_val.value.replace(' ', '-').lower())
+    lib_plat_list.append(cell_val.value.replace(' ', '-').lower())
 
 # Re-define steam and uplay as 'pc'
-for n, i in enumerate(plat_list):
+for n, i in enumerate(lib_plat_list):
     if i == 'steam' or i == 'uplay':
-        plat_list[n] = 'pc'
+        lib_plat_list[n] = 'pc'
 
 # list of scores taken from spreadsheet
-score_list = lib_sheet.range('C' + row_start + ':C' + row_end)
+lib_score_list = lib_sheet.range('C2:C' + lib_row_end)
 
 # main loop to perform essential tasks
-for game, platform, cell in zip(games, plat_list, score_list):
+for game, platform, cell in zip(lib_game_list, lib_plat_list, lib_score_list):
     current_url = base_url + platform + '/' + game
     try:
         if cell.value == '':
@@ -48,4 +49,4 @@ for game, platform, cell in zip(games, plat_list, score_list):
     except:
         print(current_url + ' not read')
 
-lib_sheet.update_cells(score_list)
+lib_sheet.update_cells(lib_score_list)
