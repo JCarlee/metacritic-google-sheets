@@ -31,6 +31,8 @@ for game, plat_cell in zip(gp_game_list, gp_plat_cells):
     except:
         plat_cell.value = 'Xbox One'
 
+gp_sheet.update_cells(gp_plat_cells)
+
 gp_plat_list = []
 for plat_cell_val in gp_plat_cells:
     gp_plat_list.append(plat_cell_val.value.replace(' ', '-').lower())
@@ -49,4 +51,4 @@ for game, platform, cell in zip(gp_game_list, gp_plat_list, gp_score_list):
             cell.value = box
     except:
         print(current_url + ' not read')
-gp_sheet.update_cells(gp_game_cells)
+gp_sheet.update_cells(gp_score_list)
