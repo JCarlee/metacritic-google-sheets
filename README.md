@@ -15,12 +15,14 @@ Please feel free to email me at JCarlee@gmail.com with suggestions or ideas.
 * gspread
 * urllib
 * oauth2client.service_account
+
 ```
 pip install bs4
 pip install gspread
 pip install urllib
 pip install oauth2client
 ```
+
 ## Google Sheets Personal Library Setup
 [Create Copy of Template](https://docs.google.com/spreadsheets/d/138_jFzCP4pk1-UBBEzkiz0etvm9iSmuNUnO_-ABIVcs/edit?usp=sharing)
 
