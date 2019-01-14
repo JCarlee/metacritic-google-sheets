@@ -43,7 +43,8 @@ This sheet holds the value for final row in Library sheet.
 Cell A2:  
 `=right(address(match("zzz", Library!A:A),1 , 4, 1), 2)`
 
-[OAuth2 setup](https://gspread.readthedocs.io/en/latest/oauth2.html)
+[OAuth2 setup](https://gspread.readthedocs.io/en/latest/oauth2.html)  
+To be named `meta-credentials.json`
 
 ### Platforms supported
 * Xbox One
