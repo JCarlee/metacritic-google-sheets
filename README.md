@@ -7,7 +7,7 @@ Xbox Game Pass games. Finding nothing online that completed this task, I decided
 implementation using Python and Google Sheets.
 
 I consider myself a novice Python developer so any and all criticism to the approach, code, and documentation is welcome.
- Please feel free to email me at JCarlee@gmail.com with suggestions or ideas.
+Please feel free to email me at JCarlee@gmail.com with suggestions or ideas.
 
 ## Dependencies
 * Python 3
