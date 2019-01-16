@@ -9,7 +9,7 @@ gc = gspread.authorize(credentials)
 gp_sheet = gc.open('Game Library').worksheet("GamePass")
 info_sheet = gc.open('Game Library').worksheet("Python")
 
-gp_row_end = info_sheet.acell('D2').value
+gp_row_end = info_sheet.acell('B2').value
 base_url = 'https://www.metacritic.com/game/'
 
 gp_game_list = []
