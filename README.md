@@ -19,7 +19,6 @@ Please feel free to email me at JCarlee@gmail.com with suggestions or ideas.
 ```
 pip install bs4
 pip install gspread
-pip install urllib
 pip install oauth2client
 ```
 
