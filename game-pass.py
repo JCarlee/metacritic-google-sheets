@@ -38,7 +38,7 @@ for plat_cell_val in gp_plat_cells:
     gp_plat_list.append(plat_cell_val.value.replace(' ', '-').lower())
 
 
-# Metacritic score
+# Extract metacritic score
 for game, platform, cell in zip(gp_game_list, gp_plat_list, gp_score_list):
     current_url = base_url + platform + '/' + game
     try:
